@@ -31,7 +31,8 @@
 </template>
 <script>
 import axios from '@/axios';
-export default {
+import { defineComponent } from 'vue';
+export default defineComponent( {
   data() {
     return {
       login: {
@@ -53,9 +54,12 @@ export default {
     },
     async getToken(){
       try {
+        const token = localStorage.getItem('oauth');
+        if (!token) {
         const res = await axios.post('http://localhost:59767/api/RequestValidation/Authenticate');
 
         this.setHeaderAfterLogin(res);
+        }
       }
       catch (error) {
         console.log(error)
@@ -83,7 +87,7 @@ export default {
       }
     },
   }
-};
+});
 </script>
 <style >
 .modal-backdrop {
