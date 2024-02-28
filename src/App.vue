@@ -1,21 +1,37 @@
-<script >
-import Header from './components/Header.vue';
-import Footer from './components/Footer.vue';
-export default {
-  components:{
-    Header,
-    Footer
-  },
-}
-</script>
-
 <template>
+
+  <Loader v-if="loaderService.isLoading()" />
  <Header/>
   <main>
     <router-view></router-view>
   </main>
   <Footer/>
 </template>
+<script >
+import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
+import Loader from './components/Loader.vue';
+import loaderService from '@/services/loaderService'; // Import your loader service
+export default {
+  components:{
+    Header,
+    Footer,
+    Loader
+  },
+  data() {
+    return {
+      isLoading: false // Use a boolean flag to control when the loader is displayed
+    };
+  }
+  ,computed: {
+    loaderService() {
+      console.log(loaderService.isLoading())
+      return loaderService; // Access loader service
+    }
+  }
+}
+</script>
+
 
 <style scoped>
 /* Import Bootstrap CSS */

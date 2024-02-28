@@ -76,7 +76,7 @@ export default {
         console.log('Login successful:', response.data);
 
         // Clear login data after successful login
-        clearLoginData();
+        this.clearLoginData();
       } catch (error) {
         // Handle errors
         console.error('Error logging in:', error);
